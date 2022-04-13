@@ -30,7 +30,7 @@ function Todos() {
 
     const GetData = () => {
        let data:any = localStorage.getItem('MyData')
-       data = JSON.parse(data);
+       data = JSON.parse(data) || [];
        if(data === undefined){
            return []
        } else{
