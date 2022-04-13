@@ -40,9 +40,7 @@ function Todos() {
 
     const [todos, dispatch] = useReducer(reducer, GetData())
 
-    useEffect(() => {
-        localStorage.setItem('MyData', JSON.stringify(todos))
-    }, [todos]);
+
 
     const newTodoRef = useRef<HTMLInputElement>(null)
 
@@ -60,6 +58,10 @@ function Todos() {
         }
     }, [])
 
+    useEffect(() => {
+        localStorage.setItem('MyData', JSON.stringify(todos))
+    }, [todos]);
+
 
 
     return (
@@ -70,7 +72,7 @@ function Todos() {
                 <input placeholder='Add Item....' className='p-2 border-2 mt-2 px-12' ref={newTodoRef} type="text" />
                 <button className='bg-green-600 p-2 px-5 border-separate rounded-sm text-white text-xl' onClick={onAddTodo}>Add</button>
                 {
-                    todos.map((todo) => <div key={todo.id} className='text-xl grid grid-cols-6'>
+                    todos.map((todo, index) => <div key={index} className='text-xl grid grid-cols-6'>
                           <div className='grid grid-cols-4 gap-4 mx-5'>
                               {todo.text}
                           </div> 
